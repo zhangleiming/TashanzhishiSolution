@@ -99,6 +99,7 @@
     <Compile Include="Filter\JsonFilterAttribute.cs" />
     <Compile Include="Helper\AuthManagerHelper.cs" />
     <Compile Include="Helper\HttpHelper.cs" />
+    <Compile Include="Helper\SecurityHelper.cs" />
     <Compile Include="Helper\SimpleTextLogHelper.cs" />
     <Compile Include="Log\SimpleTextLog.cs" />
     <Compile Include="RegularLib.cs" />
