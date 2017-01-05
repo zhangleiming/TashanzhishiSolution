@@ -167,7 +167,7 @@ namespace Zhixing.Tashanzhishi.Web.Log
                     FileInf = new System.IO.FileInfo(this.m_LogPath + @"\" + this.m_LogFileName + DateTime.Now.ToString("yyyy-MM-dd ") + this.m_FileSequence.ToString() + ".LOG");
                 }
                 ReturnValue = FileInf.CreateText();
-                ReturnValue.WriteLine("河南点金时代科技有限公司日志文件。");
+                ReturnValue.WriteLine("他山之石日志文件。");
                 ReturnValue.WriteLine("版本：1.1");
                 ReturnValue.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 ReturnValue.WriteLine();
