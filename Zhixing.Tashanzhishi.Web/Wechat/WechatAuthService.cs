@@ -16,12 +16,12 @@ namespace Zhixing.Tashanzhishi.Web.Wechat
     public class WechatAuthService
     {
         /// <summary>
-        /// 
+        /// 应用标识
         /// </summary>
         private string appID = "";
 
         /// <summary>
-        /// 
+        /// 应用密钥
         /// </summary>
         private string appSecret = "";
 
@@ -82,6 +82,43 @@ namespace Zhixing.Tashanzhishi.Web.Wechat
         {
             string url = string.Format("https://api.weixin.qq.com/sns/userinfo?access_token={0}&openid={1}&lang=zh_CN", accessToken, openid);
             string fullMsg = HttpHelper.Get(url);
+            return fullMsg;
+        }
+
+        /// <summary>
+        /// 刷新Token，使授权过期
+        /// </summary>
+        /// <param name="refreshToken"></param>
+        /// <returns></returns>
+        public string RefreshToken(string refreshToken)
+        {
+            string url = string.Format("https://api.weixin.qq.com/sns/oauth2/refresh_token?appid={0}&grant_type=refresh_token&refresh_token={1} ",appID, refreshToken);
+            string fullMsg = HttpHelper.Get(url);
+            return fullMsg;
+        }
+
+        /// <summary>
+        /// 获取访问令牌
+        /// </summary>
+        /// <returns></returns>
+        public string GetAccessToken()
+        {
+            string url = string.Format("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}", appID, appSecret);
+            string fullMsg = HttpHelper.Get(url);
+            return fullMsg;
+        }
+
+        /// <summary>
+        /// 创建微信公众号菜单
+        /// </summary>
+        /// <param name="accessToken"></param>
+        /// <param name="menuJSON"></param>
+        /// <returns></returns>
+        public string CreateMenu(string accessToken,string menuJSON)
+        {
+            string url = string.Format("https://api.weixin.qq.com/cgi-bin/menu/create?access_token={0}", accessToken);
+            string fullMsg = HttpHelper.Post(url, menuJSON);
+
             return fullMsg;
         }
 
