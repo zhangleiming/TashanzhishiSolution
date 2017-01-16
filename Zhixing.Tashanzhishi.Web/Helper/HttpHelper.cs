@@ -39,5 +39,41 @@ namespace Zhixing.Tashanzhishi.Web.Helper
             return responseContent;
 
         }
+
+        /// <summary>
+        /// Post数据
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="postData"></param>
+        /// <returns></returns>
+        public static string Post(string url, string postData)
+        {
+            string responseContent = "";
+
+            byte[] postBytes = Encoding.UTF8.GetBytes(postData);
+            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+            httpWebRequest.Timeout = 5 * 60 * 1000;// 90000;
+            httpWebRequest.Method = "POST";
+            httpWebRequest.ContentLength = postBytes.Length;
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Headers.Add("Accept-Language", "zh-cn,zh;q=0.5");
+            httpWebRequest.Headers.Add("Accept-Charset", "gb2312,utf-8;q=0.7,*;q=0.7");
+            httpWebRequest.Headers.Set("Pragma", "no-cache");
+            using (Stream requestStream = httpWebRequest.GetRequestStream())
+            {
+                requestStream.Write(postBytes, 0, postBytes.Length);
+
+                HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (Stream responseStream = httpWebResponse.GetResponseStream())
+                {
+                    using (StreamReader responseReader = new StreamReader(responseStream, Encoding.UTF8))
+                    {
+                        responseContent = responseReader.ReadToEnd();
+                    }
+                }
+            }
+
+            return responseContent;
+        }
     }
 }
