@@ -75,5 +75,28 @@ namespace Zhixing.Tashanzhishi.Web.Helper
 
             return responseContent;
         }
+
+        /// <summary>
+        /// 根据URL获取文件流
+        /// </summary>
+        /// <param name="fileURL"></param>
+        /// <returns></returns>
+        public static Stream GetFileStream(string fileURL)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(fileURL);
+            request.Method = "GET";
+            request.ContentType = "image/*";
+            request.Headers.Add("Accept-Language", "zh-cn,zh;q=0.5");
+            request.Headers.Add("Accept-Charset", "gb2312,utf-8;q=0.7,*;q=0.7");
+
+            //声明一个HttpWebRequest请求  
+            request.Timeout = 5 * 60 * 1000;// 90000;
+            //设置连接超时时间  
+            request.Headers.Set("Pragma", "no-cache");
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream streamReceive = response.GetResponseStream();
+
+            return streamReceive;
+        }
     }
 }

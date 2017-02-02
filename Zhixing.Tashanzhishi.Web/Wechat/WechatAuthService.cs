@@ -109,6 +109,18 @@ namespace Zhixing.Tashanzhishi.Web.Wechat
         }
 
         /// <summary>
+        /// 获取Jsapi的票据
+        /// </summary>
+        /// <param name="accessToken"></param>
+        /// <returns></returns>
+        public string GetJsapiTicket(string accessToken)
+        {
+            string url = string.Format("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={0}&type=jsapi", accessToken);
+            string fullMsg = HttpHelper.Get(url);
+            return fullMsg;
+        }
+
+        /// <summary>
         /// 创建微信公众号菜单
         /// </summary>
         /// <param name="accessToken"></param>
