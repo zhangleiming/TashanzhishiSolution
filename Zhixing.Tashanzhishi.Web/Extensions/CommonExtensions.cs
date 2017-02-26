@@ -113,48 +113,32 @@ namespace Zhixing.Tashanzhishi.Web
             return dbcString;
         }
 
-        ///// <summary>
-        ///// 反序列化JSON字符串到对象
-        ///// </summary>
-        ///// <typeparam name="T"></typeparam>
-        ///// <param name="json"></param>
-        ///// <returns></returns>
-        //public static T DeserializeObject<T>(this string json)
-        //{
-        //    //JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
+        /// <summary>
+        /// 格式化为 yyyy-mm-dd
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+        public static string DateFormat(this DateTime? dateTime)
+        {
+            return dateTime.HasValue ? dateTime.Value.ToString("yyyy-MM-dd") : "--";
+        }
 
-        //    //T obj = default(T);
-        //    //try
-        //    //{
-        //    //    obj = jsSerializer.Deserialize<T>(json);
-        //    //}
-        //    //catch (Exception ex)
-        //    //{
-        //    //}
-
-        //    return obj;
-        //}
-
-        ///// <summary>
-        ///// 将对象序列化为JSON字符串
-        ///// </summary>
-        ///// <typeparam name="T"></typeparam>
-        ///// <param name="obj"></param>
-        ///// <returns></returns>
-        //public static string SerializeToJSON<T>(this T obj)
-        //{
-        //    JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
-
-        //    string jsonString = default(string);
-        //    try
-        //    {
-        //        jsonString = jsSerializer.Serialize(obj);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //    }
-
-        //    return jsonString;
-        //}
+        /// <summary>
+        /// 获取字典的值，不存在时使用缺省值
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="dic"></param>
+        /// <param name="key"></param>
+        /// <param name="defaultValueFormat"></param>
+        /// <returns></returns>
+        public static string StateValueWithDefault<T>(this Dictionary<T,string> dic,T key,string defaultValueFormat="{0}")
+        {
+            string value;
+            if(!dic.TryGetValue(key,out value))
+            {
+                value = string.Format(defaultValueFormat, key);
+            }
+            return value;
+        }
     }
 }
