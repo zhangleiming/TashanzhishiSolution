@@ -99,12 +99,15 @@
     <Compile Include="Filter\ExceptionFilter.cs" />
     <Compile Include="Filter\JsonFilterAttribute.cs" />
     <Compile Include="Helper\AuthManagerHelper.cs" />
+    <Compile Include="Helper\CommonHelperExtension.cs" />
     <Compile Include="Helper\GisHelper.cs" />
     <Compile Include="Helper\HttpHelper.cs" />
+    <Compile Include="Helper\RequestHelper.cs" />
     <Compile Include="Helper\SecurityHelper.cs" />
     <Compile Include="Helper\SimpleTextLogHelper.cs" />
     <Compile Include="Imaging\ImageCommon.cs" />
     <Compile Include="Log\SimpleTextLog.cs" />
+    <Compile Include="Models\RequestModel.cs" />
     <Compile Include="RegularLib.cs" />
     <Compile Include="TashanzhishiWebUtility.cs" />
     <Compile Include="Helper\CookieHelper.cs" />
@@ -115,9 +118,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

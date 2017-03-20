@@ -54,5 +54,16 @@ namespace Zhixing.Tashanzhishi.Web
         {
             return HttpContext.Current.Server.UrlEncode(s);
         }
+
+        /// <summary>
+        /// 对字符串进行UrlEncode编码
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="encoding"></param>
+        /// <returns></returns>
+        public static string UrlEncode(string s, Encoding encoding)
+        {
+            return System.Web.HttpUtility.UrlEncode(s, encoding);
+        }
     }
 }
